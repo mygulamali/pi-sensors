@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+fastapi = {extras = ["all"], version = "==0.63.0"}
 
 [requires]
 python_version = "3.8"
