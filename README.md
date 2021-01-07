@@ -4,6 +4,10 @@
 
 Install the Python packages: `pipenv install`
 
+## Run live server
+
+`pipenv run uvicorn --reload main:app`
+
 ## License
 
 This software is released under the terms and conditions of [The MIT License].
