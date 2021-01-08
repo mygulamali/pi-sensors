@@ -6,7 +6,9 @@ Install the Python packages: `pipenv install`
 
 ## Run live server
 
-`pipenv run uvicorn --reload main:app`
+```shell
+pipenv run uvicorn --reload --reload-dir app --app-dir app main:app
+```
 
 ## License
 
