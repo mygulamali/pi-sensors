@@ -2,13 +2,17 @@
 
 ## Setup
 
-Install the Python packages: `pipenv install`
+1. Run `make setup`,
+1. Open `hosts.yml` in your text editor and complete the `hosts` and `vars`
+   sections according to your setup.
 
 ## Run live server
 
-```shell
-pipenv run uvicorn --reload --reload-dir app --app-dir app main:app
-```
+Run `make serve`
+
+## Deploy to Raspberry Pi
+
+Run `make deploy`
 
 ## License
 

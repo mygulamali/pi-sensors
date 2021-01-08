@@ -1,0 +1,19 @@
+---
+- name: Synchronize app
+  synchronize:
+    src: ./app
+    dest: "{{ app.path }}"
+    owner: no
+    group: no
+    delete: yes
+    recursive: yes
+
+- name: Copy requirements file
+  copy:
+    src: requirements.txt
+    dest: "{{ app.path }}/requirements.txt"
+    mode: 0644
+
+- name: Install requirements
+  pip:
+    requirements: "{{ app.path }}/requirements.txt"

@@ -1,0 +1,6 @@
+---
+- name: "Deploy app to Raspberry Pi"
+  hosts: all
+  become: yes
+  roles:
+  - deploy
