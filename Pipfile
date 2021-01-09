@@ -5,9 +5,13 @@ verify_ssl = true
 
 [dev-packages]
 ansible = "==2.10"
+watchgod = "==0.6"
 
 [packages]
-fastapi = {extras = ["all"], version = "==0.63.0"}
+fastapi = "==0.63.0"
+httptools = "==0.1.1"
+uvicorn = "==0.13.3"
+uvloop = "==0.14.0"
 
 [requires]
 python_version = "3.8"
