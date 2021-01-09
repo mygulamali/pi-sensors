@@ -1,0 +1,7 @@
+---
+- name: Restart pi-sensors service
+  systemd:
+    service: pi-sensors
+    enabled: yes
+    daemon_reload: yes
+    state: restarted

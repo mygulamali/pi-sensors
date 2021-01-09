@@ -17,3 +17,12 @@
 - name: Install requirements
   pip:
     requirements: "{{ app.path }}/requirements.txt"
+
+- name: Copy pi-sensors service
+  template:
+    src: pi-sensors.service.j2
+    dest: /etc/systemd/system/pi-sensors.service
+    backup: yes
+    mode: 0644
+  notify:
+  - Restart pi-sensors service

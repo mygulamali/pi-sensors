@@ -1,0 +1,24 @@
+[Unit]
+Description=pi-sensors service
+Documentation=https://github.com/mygulamali/pi-sensors
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory={{ app.path }}
+PIDFile={{ app.path }}/app.pid
+ExecStart=uvicorn \
+    --host 0.0.0.0 \
+    --port {{ app.port }} \
+    --loop uvloop \
+    --http httptools \
+    --interface asgi3 \
+    --no-access-log \
+    --app-dir {{ app.path }}/app \
+    main:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
