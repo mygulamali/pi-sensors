@@ -24,5 +24,10 @@
     dest: /etc/systemd/system/pi-sensors.service
     backup: yes
     mode: 0644
-  notify:
-  - Restart pi-sensors service
+
+- name: Restart pi-sensors service
+  systemd:
+    service: pi-sensors
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
