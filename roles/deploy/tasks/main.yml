@@ -13,10 +13,12 @@
     src: requirements.txt
     dest: "{{ app.path }}/requirements.txt"
     mode: 0644
+  register: requirements
 
 - name: Install requirements
   pip:
     requirements: "{{ app.path }}/requirements.txt"
+  when: requirements.changed
 
 - name: Copy pi-sensors service
   template:
