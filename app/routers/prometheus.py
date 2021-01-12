@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi.responses import PlainTextResponse
 from prometheus_client import CONTENT_TYPE_LATEST, REGISTRY, generate_latest
 
-from instruments import CPU
+from instruments import Hardware
 
 
 class InstrumentResponse(PlainTextResponse):
@@ -19,5 +19,5 @@ async def root():
 
 @route.get('/hardware', response_class=InstrumentResponse)
 async def hardware():
-    CPU.poll()
+    Hardware.poll()
     return generate_latest(REGISTRY)
