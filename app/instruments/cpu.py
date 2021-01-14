@@ -1,7 +1,7 @@
 from prometheus_client import Gauge
 
 from instruments.constants import METRICS_PREFIX
-from models.cpu import CPU as CPUModel, CPU_PERCENT_INTERVAL
+from models.cpu import CPU as Model, CPU_PERCENT_INTERVAL
 
 
 class CPU:
@@ -19,13 +19,9 @@ class CPU:
         'CPU temperature [ºC]',
     )
 
-    @staticmethod
-    def poll() -> None:
-        stats = CPUModel.poll()
-
-        cpu = CPU()
-        cpu.load.labels('1').set(stats.load_01)
-        cpu.load.labels('5').set(stats.load_05)
-        cpu.load.labels('15').set(stats.load_15)
-        cpu.percent.set(stats.percent)
-        cpu.temperature.set(stats.temperature or 'NaN')
+    def __init__(self, model: Model):
+        self.load.labels('1').set(model.load_01)
+        self.load.labels('5').set(model.load_05)
+        self.load.labels('15').set(model.load_15)
+        self.percent.set(model.percent)
+        self.temperature.set(model.temperature or 'NaN')

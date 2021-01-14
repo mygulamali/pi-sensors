@@ -1,7 +1,7 @@
 from prometheus_client import Gauge
 
 from instruments.constants import METRICS_PREFIX
-from models.memory import Memory as MemoryModel
+from models.memory import Memory as Model
 
 
 class Memory:
@@ -18,11 +18,7 @@ class Memory:
         'Memory used [%]',
     )
 
-    @staticmethod
-    def poll() -> None:
-        stats = MemoryModel.poll()
-
-        memory = Memory()
-        memory.available_bytes.set(stats.available_bytes)
-        memory.total_bytes.set(stats.total_bytes)
-        memory.used_percent.set(stats.used_percent)
+    def __init__(self, model: Model):
+        self.available_bytes.set(model.available_bytes)
+        self.total_bytes.set(model.total_bytes)
+        self.used_percent.set(model.used_percent)
