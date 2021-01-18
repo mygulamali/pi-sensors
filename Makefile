@@ -5,10 +5,10 @@ serve:
 .PHONY: setup
 setup:
 	pipenv install --dev
-	cp hosts.example.yml hosts.yml
+	cp ansible/hosts.example.yml ansible/hosts.yml
 
 .PHONY: deploy
 deploy:
 	pipenv lock -r > requirements.txt
-	pipenv run ansible-playbook -i hosts.yml deploy.yml
+	pipenv run ansible-playbook -i ansible/hosts.yml ansible/deploy.yml
 	rm requirements.txt

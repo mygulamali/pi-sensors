@@ -1,7 +1,7 @@
 ---
 - name: Synchronize app
   synchronize:
-    src: ./app
+    src: ../app
     dest: "{{ app.path }}"
     owner: no
     group: no
@@ -10,7 +10,7 @@
 
 - name: Copy requirements file
   copy:
-    src: requirements.txt
+    src: ../requirements.txt
     dest: "{{ app.path }}/requirements.txt"
     mode: 0644
   register: requirements
