@@ -9,6 +9,4 @@ setup:
 
 .PHONY: deploy
 deploy:
-	pipenv lock -r > requirements.txt
 	pipenv run ansible-playbook -i ansible/hosts.yml ansible/deploy.yml
-	rm requirements.txt

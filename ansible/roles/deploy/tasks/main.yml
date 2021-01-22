@@ -8,9 +8,15 @@
     delete: yes
     recursive: yes
 
+- name: Create local requirements file
+  become: no
+  local_action:
+    module: shell
+    cmd: pipenv lock -r > requirements.txt
+
 - name: Copy requirements file
   copy:
-    src: ../requirements.txt
+    src: requirements.txt
     dest: "{{ app.path }}/requirements.txt"
     mode: 0644
   register: requirements
@@ -19,6 +25,13 @@
   pip:
     requirements: "{{ app.path }}/requirements.txt"
   when: requirements.changed
+
+- name: Delete local requirements file
+  become: no
+  local_action:
+    module: file
+    path: requirements.txt
+    state: absent
 
 - name: Copy pi-sensors service
   template:
