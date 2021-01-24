@@ -53,10 +53,21 @@
     dest: prometheus.yml
     flat: yes
 
+- name: Update Prometheus configuration
+  become: no
+  local_action:
+    module: command
+    cmd: |
+      scripts/update_prometheus_config.py \
+        --source prometheus.yml \
+        --port {{ app.port }}
+  notify:
+  - Save Prometheus configuration
+  - Restart Prometheus
+
 - name: Delete local Prometheus configuration
   become: no
   local_action:
     module: file
     path: prometheus.yml
     state: absent
-
