@@ -61,8 +61,15 @@
       scripts/update_prometheus_config.py \
         --source prometheus.yml \
         --port {{ app.port }}
+  register: prometheus
+
+- name: Save Prometheus configuration
+  copy:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+    backup: yes
+  when: prometheus.changed
   notify:
-  - Save Prometheus configuration
   - Restart Prometheus
 
 - name: Delete local Prometheus configuration

@@ -1,10 +1,4 @@
 ---
-- name: Save Prometheus configuration
-  copy:
-    src: prometheus.yml
-    dest: /etc/prometheus/prometheus.yml
-    backup: yes
-
 - name: Restart Prometheus
   service:
     name: prometheus
