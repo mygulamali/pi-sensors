@@ -1,6 +1,9 @@
-from bme280 import BME280
-from ltr559 import LTR559
 from pydantic import BaseModel
+try:
+    from bme280 import BME280
+    from ltr559 import LTR559
+except ImportError:
+    from mocks import BME280, LTR559
 
 from models.enviro import Enviro
 from models.hardware import Hardware

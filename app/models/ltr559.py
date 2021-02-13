@@ -1,5 +1,8 @@
-from ltr559 import LTR559 as Sensor
 from pydantic import BaseModel
+try:
+    from ltr559 import LTR559 as Sensor
+except ImportError:
+    from mocks import LTR559 as Sensor
 
 
 class LTR559(BaseModel):

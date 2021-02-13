@@ -1,6 +1,9 @@
-from bme280 import BME280 as BME280Sensor
-from ltr559 import LTR559 as LTR559Sensor
 from pydantic import BaseModel
+try:
+    from bme280 import BME280 as BME280Sensor
+    from ltr559 import LTR559 as LTR559Sensor
+except ImportError:
+    from mocks import BME280 as BME280Sensor, LTR559 as LTR559Sensor
 
 from models.bme280 import BME280
 from models.ltr559 import LTR559

@@ -1,10 +1,11 @@
-from typing import Dict
-
-from bme280 import BME280
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
-from ltr559 import LTR559
 from prometheus_client import CONTENT_TYPE_LATEST, REGISTRY, generate_latest
+try:
+    from bme280 import BME280
+    from ltr559 import LTR559
+except ImportError:
+    from mocks import BME280, LTR559
 
 from instruments import Hardware as HardwareInstrument
 from models import Sensors as SensorsModel
@@ -24,7 +25,7 @@ async def root():
     return 'OK'
 
 
-@app.get('/json', response_class=SensorsModel)
+@app.get('/json')
 async def json():
     return SensorsModel.poll(bme280, ltr559)
 

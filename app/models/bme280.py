@@ -1,5 +1,8 @@
-from bme280 import BME280 as Sensor
 from pydantic import BaseModel
+try:
+    from bme280 import BME280 as Sensor
+except ImportError:
+    from mocks import BME280 as Sensor
 
 
 class BME280(BaseModel):
