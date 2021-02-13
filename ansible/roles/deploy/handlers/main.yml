@@ -1,5 +1,2 @@
 ---
-- name: Restart Prometheus
-  service:
-    name: prometheus
-    state: restarted
+- import_tasks: roles/prometheus/handlers/main.yml

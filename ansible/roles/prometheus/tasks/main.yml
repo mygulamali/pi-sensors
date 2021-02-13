@@ -1,0 +1,39 @@
+---
+- name: Populate service facts
+  service_facts:
+
+- name: Check if Prometheus is already installed
+  meta: end_play
+  when: ansible_facts.services["prometheus.service"] is defined
+
+- name: Install Prometheus and Node Exporter
+  apt:
+    name:
+    - prometheus
+    - prometheus-node-exporter
+    install_recommends: yes
+    state: latest
+
+- name: Setup Prometheus
+  copy:
+    src: prometheus.yml
+    dest: /etc/prometheus/prometheus.yml
+    backup: yes
+  notify:
+  - Restart Prometheus
+
+- name: Setup Prometheus node-exporter
+  copy:
+    src: prometheus-node-exporter
+    dest: /etc/default/prometheus-node-exporter
+    backup: yes
+  notify:
+  - Restart Prometheus node-exporter
+
+- name: Allow port connection
+  ufw:
+    rule: limit
+    port: '9090'
+    proto: tcp
+  notify:
+  - Reload UFW

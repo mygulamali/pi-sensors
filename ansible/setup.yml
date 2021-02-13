@@ -1,0 +1,6 @@
+---
+- name: "Setup Raspberry Pi for app"
+  hosts: all
+  become: yes
+  roles:
+  - prometheus
