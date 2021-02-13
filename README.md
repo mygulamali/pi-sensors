@@ -2,11 +2,12 @@
 
 ## Setup
 
-1. Run `make setup`,
+1. Run `make init`,
 1. Open `ansible/hosts.yml` in your text editor and complete the `hosts` and
-   `vars` sections according to your setup.
+   `vars` sections according to your setup,
+1. Run `make setup`.
 
-## Run development server locally
+## Run local development server
 
 Run `make serve`
 
