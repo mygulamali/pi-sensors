@@ -6,3 +6,4 @@ from models.hardware import Hardware
 from models.ltr559 import LTR559
 from models.memory import Memory
 from models.network import Network
+from models.sensors import Sensors
