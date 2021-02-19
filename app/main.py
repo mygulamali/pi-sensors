@@ -7,7 +7,7 @@ try:
 except ImportError:
     from mocks import BME280, LTR559
 
-from instruments import Hardware as HardwareInstrument
+from instruments import Sensors as SensorsInstrument
 from models import Sensors as SensorsModel
 
 
@@ -32,5 +32,5 @@ async def json():
 
 @app.get('/metrics', response_class=InstrumentResponse)
 async def metrics():
-    HardwareInstrument.poll()
+    SensorsInstrument.poll(bme280, ltr559)
     return generate_latest(REGISTRY)
