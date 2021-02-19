@@ -10,7 +10,6 @@
   lineinfile:
     path: /boot/config.txt
     line: "dtoverlay=pi3-miniuart-bt"
-    backup: yes
 
 - name: Install dependencies
   apt:
@@ -23,4 +22,5 @@
     state: latest
 
 - name: Install Python packages
-  pip: enviroplus
+  pip:
+    name: enviroplus
