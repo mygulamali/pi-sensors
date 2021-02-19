@@ -5,6 +5,7 @@ serve:
 .PHONY: init
 init:
 	pipenv install --dev
+	pipenv run pre-commit install
 	cp ansible/hosts.example.yml ansible/hosts.yml
 
 .PHONY: setup

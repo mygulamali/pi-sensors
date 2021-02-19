@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 ansible = "==2.10"
+pre-commit = "==2.10.1"
 watchgod = "==0.6"
 
 [packages]
