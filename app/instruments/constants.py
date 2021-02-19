@@ -1,1 +1,1 @@
-METRICS_PREFIX = 'sensors'
+METRICS_PREFIX = "sensors"

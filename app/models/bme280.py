@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+
 try:
     from bme280 import BME280 as Sensor
 except ImportError:
@@ -11,7 +12,7 @@ class BME280(BaseModel):
     temperature: float
 
     @classmethod
-    def poll(cls, sensor: Sensor) -> 'BME280':
+    def poll(cls, sensor: Sensor) -> "BME280":
         sensor.update_sensor()
 
         return BME280(

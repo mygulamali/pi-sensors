@@ -6,16 +6,16 @@ from models.memory import Memory as Model
 
 class Memory:
     available_bytes: Gauge = Gauge(
-        f'{METRICS_PREFIX}_memory_available_bytes',
-        'Available memory [bytes]',
+        f"{METRICS_PREFIX}_memory_available_bytes",
+        "Available memory [bytes]",
     )
     total_bytes: Gauge = Gauge(
-        f'{METRICS_PREFIX}_memory_total_bytes',
-        'Total physical memory [bytes]',
+        f"{METRICS_PREFIX}_memory_total_bytes",
+        "Total physical memory [bytes]",
     )
     used_percent: Gauge = Gauge(
-        f'{METRICS_PREFIX}_memory_used_percent',
-        'Memory used [%]',
+        f"{METRICS_PREFIX}_memory_used_percent",
+        "Memory used [%]",
     )
 
     def __init__(self, model: Model):

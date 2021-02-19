@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import PlainTextResponse
 from prometheus_client import CONTENT_TYPE_LATEST, REGISTRY, generate_latest
+
 try:
     from bme280 import BME280
     from ltr559 import LTR559
@@ -20,17 +21,17 @@ bme280 = BME280()
 ltr559 = LTR559()
 
 
-@app.get('/', response_class=PlainTextResponse)
+@app.get("/", response_class=PlainTextResponse)
 async def root():
-    return 'OK'
+    return "OK"
 
 
-@app.get('/json')
+@app.get("/json")
 async def json():
     return SensorsModel.poll(bme280, ltr559)
 
 
-@app.get('/metrics', response_class=InstrumentResponse)
+@app.get("/metrics", response_class=InstrumentResponse)
 async def metrics():
     SensorsInstrument.poll(bme280, ltr559)
     return generate_latest(REGISTRY)

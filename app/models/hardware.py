@@ -16,12 +16,12 @@ class Hardware(BaseModel):
     networks: List[Network]
 
     @classmethod
-    def poll(cls) -> 'Hardware':
+    def poll(cls) -> "Hardware":
         return Hardware(
             cpu=CPU.poll(),
             memory=Memory.poll(),
             disks=cls._disks(),
-            networks=cls._networks()
+            networks=cls._networks(),
         )
 
     @staticmethod
@@ -41,7 +41,7 @@ class Hardware(BaseModel):
                 name=nic,
                 address=cls._network_address(nic, addresses),
                 received_bytes=stats.bytes_recv,
-                sent_bytes=stats.bytes_sent
+                sent_bytes=stats.bytes_sent,
             )
             for nic, stats in counters.items()
         ]

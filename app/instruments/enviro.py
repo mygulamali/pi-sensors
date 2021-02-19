@@ -11,10 +11,7 @@ from models import Enviro as Model
 
 class Enviro:
     @staticmethod
-    def poll(
-            bme280_sensor: BME280Sensor,
-            ltr559_sensor: LTR559Sensor
-    ) -> None:
+    def poll(bme280_sensor: BME280Sensor, ltr559_sensor: LTR559Sensor) -> None:
         enviro = Model.poll(bme280_sensor, ltr559_sensor)
 
         BME280(enviro.bme280)

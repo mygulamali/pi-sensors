@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+
 try:
     from bme280 import BME280
     from ltr559 import LTR559
@@ -14,7 +15,7 @@ class Sensors(BaseModel):
     hardware: Hardware
 
     @classmethod
-    def poll(cls, bme280: BME280, ltr559: LTR559) -> 'Sensors':
+    def poll(cls, bme280: BME280, ltr559: LTR559) -> "Sensors":
         return Sensors(
             enviro=Enviro.poll(bme280, ltr559),
             hardware=Hardware.poll(),

@@ -8,7 +8,7 @@ class Memory(BaseModel):
     used_percent: float
 
     @staticmethod
-    def poll() -> 'Memory':
+    def poll() -> "Memory":
         memory = psutil.virtual_memory()
 
         return Memory(

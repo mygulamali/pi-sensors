@@ -5,7 +5,7 @@ import psutil
 from pydantic import BaseModel
 
 
-CPU_TEMP_COMMAND: List[str] = ['cat', '/sys/class/thermal/thermal_zone0/temp']
+CPU_TEMP_COMMAND: List[str] = ["cat", "/sys/class/thermal/thermal_zone0/temp"]
 CPU_PERCENT_INTERVAL: float = 0.1
 
 
@@ -17,7 +17,7 @@ class CPU(BaseModel):
     temperature: Optional[float]
 
     @classmethod
-    def poll(cls) -> 'CPU':
+    def poll(cls) -> "CPU":
         load_avg = psutil.getloadavg()
 
         return CPU(

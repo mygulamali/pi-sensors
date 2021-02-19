@@ -10,7 +10,7 @@ class Disk(BaseModel):
     used_percent: float
 
     @staticmethod
-    def poll(device: str, mountpoint: str) -> 'Disk':
+    def poll(device: str, mountpoint: str) -> "Disk":
         disk_usage = psutil.disk_usage(mountpoint)
 
         return Disk(
