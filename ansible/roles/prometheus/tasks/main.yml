@@ -25,12 +25,3 @@
   when: ansible_facts.services["prometheus.service"] is not defined
   notify:
   - Restart Prometheus node-exporter
-
-- name: Allow port connection
-  ufw:
-    rule: limit
-    port: '9090'
-    proto: tcp
-  when: ansible_facts.services["prometheus.service"] is not defined
-  notify:
-  - Reload UFW
