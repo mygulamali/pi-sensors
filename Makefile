@@ -10,8 +10,8 @@ init:
 
 .PHONY: setup
 setup:
-	pipenv run ansible-playbook -i ansible/hosts.yml ansible/setup.yml
+	ANSIBLE_NOCOWS=1 pipenv run ansible-playbook -i ansible/hosts.yml ansible/setup.yml
 
 .PHONY: deploy
 deploy:
-	pipenv run ansible-playbook -i ansible/hosts.yml ansible/deploy.yml
+	ANSIBLE_NOCOWS=1 pipenv run ansible-playbook -i ansible/hosts.yml ansible/deploy.yml
