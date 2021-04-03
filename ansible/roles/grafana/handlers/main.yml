@@ -1,0 +1,14 @@
+---
+- name: Enable Grafana service
+  service:
+    name: grafana-server
+    enabled: yes
+
+- name: Reload UFW
+  ufw:
+    state: reloaded
+
+- name: Restart Grafana
+  service:
+    name: grafana-server
+    state: restarted
