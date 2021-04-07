@@ -37,18 +37,20 @@ steps in a terminal on the Raspberry Pi:
 
 1. Download the ARMv6 binaries for Grafana:
    ```
-   wget https://dl.grafana.com/oss/release/grafana-7.5.2.linux-armv6.tar.gz
+   wget https://dl.grafana.com/oss/release/grafana-7.5.3.linux-armv6.tar.gz
    ```
 1. Check the SHA256 checksum to check that the archive is genuine:
    ```
    diff \
-       <(sha256sum grafana-7.5.2.linux-armv6.tar.gz | cut -d ' ' -f 1) \
-       <(echo "4c50560a544e320523d0ac0b29cd1b8bb52cdc0403cbe12dac2f64b4b54a6a37")
+       <(sha256sum grafana-7.5.3.linux-armv6.tar.gz | cut -d ' ' -f 1) \
+       <(echo "6934fae31682f278cf5dafab4632dd9bced7011ebe77633b46200f85079fd8f4")
    ```
    If there is no result then the archive is genuine.
 1. Unpack the binaries:
    ```
-   tar -zxvf grafana-7.5.2.linux-armv6.tar.gz
+   tar -zxvf grafana-7.5.3.linux-armv6.tar.gz \
+       grafana-7.5.3/bin/grafana-cli \
+       grafana-7.5.3/bin/grafana-server
    ```
 1. Backup the original Grafana binaries:
    ```
@@ -57,12 +59,16 @@ steps in a terminal on the Raspberry Pi:
    ```
 1. Copy the Grafana binaries for ARMv6:
    ```
-   sudo cp grafana-7.5.2/bin/grafana-server /usr/sbin/
-   sudo cp grafana-7.5.2/bin/grafana-cli /usr/sbin/
+   sudo cp grafana-7.5.3/bin/grafana-server /usr/sbin/
+   sudo cp grafana-7.5.3/bin/grafana-cli /usr/sbin/
    ```
 1. Restart the Grafana service:
    ```
    sudo systemctl restart grafana-server.service
+   ```
+1. [Optional] Clean up:
+   ```
+   rm -rf grafana-7.5.3.linux-armv6.tar.gz grafana-7.5.3
    ```
 
 ## Deployment
