@@ -62,6 +62,10 @@ steps in a terminal on the Raspberry Pi:
    sudo cp grafana-7.5.3/bin/grafana-server /usr/sbin/
    sudo cp grafana-7.5.3/bin/grafana-cli /usr/sbin/
    ```
+1. Allow Grafana server to bind to port 80:
+   ```
+   sudo setcap 'cap_net_bind_service=+ep' /usr/sbin/grafana-server
+   ```
 1. Restart the Grafana service:
    ```
    sudo systemctl restart grafana-server.service
